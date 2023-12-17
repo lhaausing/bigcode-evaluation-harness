@@ -38,7 +38,7 @@ class MBPP(Task):
 
     def get_dataset(self):
         """Returns dataset for the task or an iterable of any object, that get_prompt can handle"""
-        dataset = self.dataset["validation"]
+        dataset = self.dataset["train"]
         # the wrong split of mbpp can be loaded with old datasets cache
         #assert (
         #    len(dataset) == 500
@@ -67,7 +67,7 @@ class MBPP(Task):
         :param idx: int
             index of doc in the dataset to which the generation belongs
         """
-        prompt = self.get_prompt(self.dataset["validation"][idx])
+        prompt = self.get_prompt(self.dataset["train"][idx])
         generation = generation[len(prompt) :]
         return prompt + self._stop_at_stop_token(generation, self.stop_words)
 
